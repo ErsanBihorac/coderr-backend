@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from orders.models import Order
 from orders.api.serializers import OrderSerializer, OrderCreateSerializer
 from orders.api.utils import create_order_object
-from orders.api.permissions import IsAdminForDelete
+from authentication.api.permissions import IsAdminForDelete
 from django.db import models
 
 class OrderViewSet(viewsets.ModelViewSet):
