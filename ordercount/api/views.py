@@ -16,7 +16,7 @@ class OrderCountView(APIView):
             raise NotFound({'error': 'Business user not found.'})
         
         order_count = Order.objects.filter(business_user=business_profile, status='in_progress').count()
-        return Response({'order_count': order_count} ,status=status.HTTP_200_OK)
+        return Response({'order_count': order_count}, status=status.HTTP_200_OK)
 
 class CompletedOrderView(APIView):
 
@@ -30,4 +30,4 @@ class CompletedOrderView(APIView):
             raise NotFound({'error': 'Business user not found.'})
         
         order_count = Order.objects.filter(business_user=business_profile, status='completed').count()
-        return Response({'completed_order_count': order_count} ,status=status.HTTP_200_OK)
+        return Response({'completed_order_count': order_count}, status=status.HTTP_200_OK)

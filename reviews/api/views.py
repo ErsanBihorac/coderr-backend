@@ -63,7 +63,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
         review = get_review(pk=pk)
         is_admin_or_owner(request, review)
         review.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_200_OK)
         
 
         

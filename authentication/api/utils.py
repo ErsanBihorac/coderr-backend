@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.authtoken.models import Token
+from profiles.models import Business, Customer
 
 def create_user(username, email, pw, repeated_pw):
     """
@@ -54,3 +55,33 @@ def receive_login_data(serializer):
         data=serializer.errors
 
     return data
+
+def create_business_or_customer(type, user):
+    if type == 'business':
+        Business.objects.create(**return_business_profile_data(user=user))
+    elif type == 'customer':
+        Customer.objects.create(**return_customer_profile_data(user=user))
+
+def return_business_profile_data(user):
+    """
+    returns business profile data.
+    """
+    business_profile_data = {
+            "user": user,
+            "location": " ",
+            "tel": " ",
+            "description": " ",
+            "working_hours": " ",
+            "email": user.email
+    }
+    return business_profile_data
+
+def return_customer_profile_data(user):
+    """
+    Returns customer profile data.
+    """
+    customer_profile_data = {
+            "user": user,
+    }
+
+    return customer_profile_data
